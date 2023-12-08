@@ -6,7 +6,11 @@ module.exports = {
       center: true,
       padding: "0.75rem",
     },
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        list: "repeat(auto-fill, minmax(240px, 1fr))",
+      },
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {
