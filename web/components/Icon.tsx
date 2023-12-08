@@ -1,4 +1,4 @@
-type Icons = ""
+type Icons = "search"
 
 interface Props {
   id: Icons
