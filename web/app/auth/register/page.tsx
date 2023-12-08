@@ -6,15 +6,15 @@ export default function Page() {
       </h1>
 
       <div className="w-full max-w-sm card card-bordered card-body">
-        <strong className="text-3xl font-bold">Bem vindo de volta!</strong>
-        <p>Faça seu login para acessar a plataforma</p>
+        <strong className="text-3xl font-bold">Bem vindo!</strong>
+        <p>Para se cadastrar, por favor, preencha os dados abaixo</p>
 
         <form className="mt-8 grid gap-3">
           <input
             className="input input-bordered"
             type="email"
             name="email"
-            placeholder="E-mail, ex.: nome@email.com"
+            placeholder="Seu e-mail, ex.: nome@email.com"
           />
 
           <input
@@ -24,17 +24,18 @@ export default function Page() {
             placeholder="Senha"
           />
 
-          <button className="btn btn-primary">Entrar</button>
+          <input
+            className="input input-bordered"
+            type="password"
+            name="passwordConfirmation"
+            placeholder="Confirme sua senha"
+          />
+
+          <button className="btn btn-primary">Cadastrar</button>
         </form>
 
-        <a className="link link-hover text-sm text-center" href="/">
-          Esqueci minha senha
-        </a>
-
-        <div className="divider text-neutral-300">ou</div>
-
-        <a className="btn btn-accent" href="/auth/register">
-          Crie uma conta
+        <a className="link link-hover text-sm text-center" href="/auth/login">
+          Já tem uma conta? Faça login
         </a>
       </div>
     </div>
