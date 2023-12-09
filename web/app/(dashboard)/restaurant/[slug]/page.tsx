@@ -4,7 +4,7 @@ import { Product } from "@/components/cards/Product"
 
 export default function Page() {
   return (
-    <div>
+    <>
       <div className="py-6 grid gap-6 lg:grid-cols-2 xl:grid-cols-restaurant-details lg:gap-8">
         <Picture
           className="w-full h-full rounded-2xl object-cover"
@@ -157,6 +157,6 @@ export default function Page() {
           <Product />
         </div>
       </div>
-    </div>
+    </>
   )
 }

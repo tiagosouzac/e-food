@@ -1,5 +1,5 @@
 import { Logo } from "@/components/Logo"
-import { Search } from "@/components/Search"
+import { SearchBar } from "@/components/SearchBar"
 
 export function Header() {
   return (
@@ -8,7 +8,7 @@ export function Header() {
         <Logo />
       </div>
 
-      <Search />
+      <SearchBar />
     </header>
   )
 }

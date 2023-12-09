@@ -1,6 +1,11 @@
-export function Product() {
+import Link from "next/link"
+
+export function SearchProduct() {
   return (
-    <div className="card card-bordered card-compact border-neutral-200">
+    <Link
+      className="card card-bordered card-compact border-neutral-200"
+      href="/"
+    >
       <figure>
         <img
           className="aspect-video object-cover"
@@ -10,7 +15,10 @@ export function Product() {
       </figure>
 
       <div className="card-body">
-        <h2 className="card-title">Nome do prato</h2>
+        <div className="mb-2">
+          <h2 className="card-title !mb-0">Nome do prato</h2>
+          <span className="text-sm underline">Nome do restaurante</span>
+        </div>
 
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem
@@ -19,6 +27,6 @@ export function Product() {
 
         <span className="mt-4 text-xl font-semibold text-right">R$ 20,00</span>
       </div>
-    </div>
+    </Link>
   )
 }
