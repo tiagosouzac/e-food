@@ -7,6 +7,9 @@ type Icons =
   | "whatsapp"
   | "facebook"
   | "instagram"
+  | "food"
+  | "beer"
+  | "dessert"
 
 interface Props {
   id: Icons
