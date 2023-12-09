@@ -9,11 +9,14 @@ module.exports = {
     extend: {
       gridTemplateColumns: {
         list: "repeat(auto-fill, minmax(240px, 1fr))",
+        "restaurant-details": "1.5fr 1fr",
       },
     },
   },
   plugins: [require("daisyui")],
+
+  /** @type {import('daisyui').Config} */
   daisyui: {
-    themes: ["light"],
+    themes: ["cupcake"],
   },
 }

@@ -1,4 +1,12 @@
-type Icons = "search"
+type Icons =
+  | "search"
+  | "phone"
+  | "location"
+  | "clock"
+  | "link"
+  | "whatsapp"
+  | "facebook"
+  | "instagram"
 
 interface Props {
   id: Icons

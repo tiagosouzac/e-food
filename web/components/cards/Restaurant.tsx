@@ -4,7 +4,7 @@ export function Restaurant() {
   return (
     <Link
       className="card card-bordered card-compact border-neutral-200"
-      href="/search"
+      href="/restaurant/nome-do-restaurante"
     >
       <figure>
         <img
@@ -15,17 +15,17 @@ export function Restaurant() {
       </figure>
 
       <div className="card-body">
+        <div className="card-actions mb-2 gap-1">
+          <div className="badge badge-outline h-6">Tradicional</div>
+          <div className="badge badge-outline h-6">Chinesa</div>
+        </div>
+
         <h2 className="card-title">Nome do restaurante</h2>
 
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem
           nostrum ea blanditiis at vero officia?
         </p>
-
-        <div className="card-actions mt-3">
-          <div className="badge badge-outline h-6">Tradicional</div>
-          <div className="badge badge-outline h-6">Chinesa</div>
-        </div>
       </div>
     </Link>
   )

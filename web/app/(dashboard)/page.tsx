@@ -1,4 +1,4 @@
-import { Restaurant } from "@/components/Restaurant"
+import { Restaurant } from "@/components/cards/Restaurant"
 
 export default function Page() {
   return (
