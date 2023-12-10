@@ -5,6 +5,7 @@ import { PrismaModule } from './database/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { RestaurantModule } from './restaurant/restaurant.module';
 import { JwtModule } from '@nestjs/jwt';
+import { SearchModule } from './search/search.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { JwtModule } from '@nestjs/jwt';
     UserModule,
     AuthModule,
     RestaurantModule,
+    SearchModule,
   ],
 })
 export class AppModule {}
