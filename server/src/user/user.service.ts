@@ -18,17 +18,8 @@ export class UserService {
     return user;
   }
 
-  async create(data: CreateUserDto) {
-    const result = CreateUserValidator.safeParse(data);
-
-    if (!result.success && 'error' in result) {
-      const { errors } = result.error;
-      const errorsMessages = errors.map((error) => error.message);
-      throw new BadRequestException(JSON.stringify({ errors: errorsMessages }));
-    }
-
-    const { email, password } = result.data;
-
+  async create(createUserDto: CreateUserDto) {
+    const { email, password } = this.validateCreateUserDto(createUserDto);
     const userExists = await this.findByEmail(email);
 
     if (userExists) {
@@ -42,9 +33,26 @@ export class UserService {
     return user;
   }
 
+  validateCreateUserDto(createUserDto: CreateUserDto) {
+    const result = CreateUserValidator.safeParse(createUserDto);
+
+    if (!result.success && 'error' in result) {
+      const { errors } = result.error;
+      const errorsMessages = errors.map((error) => error.message);
+      throw new BadRequestException(JSON.stringify({ errors: errorsMessages }));
+    }
+
+    const { email, password } = result.data;
+    return { email, password };
+  }
+
   async hashPassword(password: string) {
     const saltOrRounds = await bcrypt.genSalt();
     const hash = await bcrypt.hash(password, saltOrRounds);
     return hash;
+  }
+
+  async comparePasswords(password: string, hash: string) {
+    return await bcrypt.compare(password, hash);
   }
 }
