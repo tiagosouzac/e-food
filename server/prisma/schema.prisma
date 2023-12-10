@@ -14,3 +14,61 @@ model User {
   created_at DateTime  @default(now())
   updated_at DateTime?
 }
+
+model Restaurant {
+  id            String     @id @default(uuid())
+  name          String     @unique
+  slug          String     @unique
+  description   String?
+  categories    Category[]
+  phone         Phone[]
+  social        Social[]
+  address       Address[]
+  opening_hours String
+}
+
+model Category {
+  id           String  @id @default(uuid())
+  name         String
+  restaurantId String?
+
+  Restaurant Restaurant? @relation(fields: [restaurantId], references: [id])
+}
+
+model Phone {
+  id           String  @id @default(uuid())
+  value        String
+  restaurantId String?
+
+  Restaurant Restaurant? @relation(fields: [restaurantId], references: [id])
+}
+
+model Social {
+  id           String        @id @default(uuid())
+  type         SocialNetwork
+  url          String
+  restaurantId String?
+
+  Restaurant Restaurant? @relation(fields: [restaurantId], references: [id])
+}
+
+enum SocialNetwork {
+  WhatsApp
+  Facebook
+  Instagram
+}
+
+model Address {
+  id            String  @id @default(uuid())
+  street        String
+  number        String
+  neighboorhood String
+  city          String
+  state         String
+  complement    String
+  postal_code   String
+  country       String
+  restaurantId  String?
+
+  Restaurant Restaurant? @relation(fields: [restaurantId], references: [id])
+}
