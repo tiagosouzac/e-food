@@ -6,6 +6,16 @@ export async function seedRestaurantsTable(prisma: PrismaClient) {
       name: 'McDonalds',
       slug: 'mc-donalds',
       description: 'Best food ever',
+      images: {
+        create: {
+          urls: {
+            create: {
+              url: 'https://www.mcdonalds.com.br/images/layout/mcdonalds-logo-footer-bg-white.png',
+            },
+          },
+          alt: 'McDonalds',
+        },
+      },
       phone: {
         createMany: {
           data: {
@@ -64,6 +74,16 @@ export async function seedRestaurantsTable(prisma: PrismaClient) {
       name: 'Burguer King',
       slug: 'burguer-king',
       description: 'Best food ever 2',
+      images: {
+        create: {
+          urls: {
+            create: {
+              url: 'https://www.burgerking.com.br/images/bklogos/BK-novo-logo.svg',
+            },
+          },
+          alt: 'Burguer King',
+        },
+      },
       phone: {
         createMany: {
           data: {

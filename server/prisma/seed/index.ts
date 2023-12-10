@@ -1,9 +1,15 @@
 import { PrismaClient } from '@prisma/client';
 import { seedRestaurantsTable } from './restaurants';
+import { seedProducts } from './products';
 
 const prisma = new PrismaClient();
 
-Promise.all([new Promise(() => seedRestaurantsTable(prisma))])
+const seed = async () => {
+  await seedRestaurantsTable(prisma);
+  await seedProducts(prisma);
+};
+
+seed()
   .then(async () => {
     await prisma.$disconnect();
   })

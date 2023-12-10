@@ -19,6 +19,8 @@ export class RestaurantService {
         categories: true,
         phone: true,
         social: true,
+        images: true,
+        products: true,
       },
     });
   }
