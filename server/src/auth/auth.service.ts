@@ -1,4 +1,8 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from 'src/user/user.service';
 import { CreateUserDto } from 'src/user/validations/create-user.schema';
@@ -17,10 +21,14 @@ export class AuthService {
   }
 
   async login(email: string, password: string) {
+    if (!email || !password) {
+      throw new BadRequestException('Email and password are required');
+    }
+
     const user = await this.userService.findByEmail(email);
 
     if (!user) {
-      throw new Error('User not found');
+      throw new BadRequestException('User not found');
     }
 
     const isPasswordValid = await this.userService.comparePasswords(

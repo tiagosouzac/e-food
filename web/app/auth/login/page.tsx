@@ -1,15 +1,18 @@
+import { login } from "./action"
+
 export default function Page() {
   return (
     <>
       <strong className="text-3xl font-bold">Bem vindo de volta!</strong>
       <p>Faça seu login para acessar a plataforma</p>
 
-      <form className="mt-8 grid gap-3">
+      <form className="mt-8 grid gap-3" action={login}>
         <input
           className="input input-bordered"
           type="email"
           name="email"
           placeholder="E-mail, ex.: nome@email.com"
+          required
         />
 
         <input
@@ -17,6 +20,7 @@ export default function Page() {
           type="password"
           name="password"
           placeholder="Senha"
+          required
         />
 
         <button className="btn btn-primary">Entrar</button>

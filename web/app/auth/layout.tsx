@@ -1,6 +1,11 @@
+import { cookies } from "next/headers"
+import { redirect } from "next/navigation"
 import { Logo } from "@/components/Logo"
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const access_token = cookies().get("access_token")
+  if (access_token) redirect("/")
+
   return (
     <html lang="pt-br">
       <body>
