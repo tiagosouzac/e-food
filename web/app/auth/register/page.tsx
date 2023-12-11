@@ -1,15 +1,18 @@
+import { register } from "./action"
+
 export default function Page() {
   return (
     <>
       <strong className="text-3xl font-bold">Bem vindo!</strong>
       <p>Para se cadastrar, por favor, preencha os dados abaixo</p>
 
-      <form className="mt-8 grid gap-3">
+      <form className="mt-8 grid gap-3" action={register}>
         <input
           className="input input-bordered"
           type="email"
           name="email"
           placeholder="Seu e-mail, ex.: nome@email.com"
+          required
         />
 
         <input
@@ -17,6 +20,7 @@ export default function Page() {
           type="password"
           name="password"
           placeholder="Senha"
+          required
         />
 
         <input
@@ -24,6 +28,7 @@ export default function Page() {
           type="password"
           name="passwordConfirmation"
           placeholder="Confirme sua senha"
+          required
         />
 
         <button className="btn btn-primary">Cadastrar</button>
