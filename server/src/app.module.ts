@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { validateEnvVars } from './env';
 import { DatabaseModule } from './database/database.module';
 import { RestaurantModule } from './restaurant/restaurant.module';
+import { SearchModule } from './search/search.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { RestaurantModule } from './restaurant/restaurant.module';
     DatabaseModule,
     AuthModule,
     RestaurantModule,
+    SearchModule,
   ],
 })
 export class AppModule {}

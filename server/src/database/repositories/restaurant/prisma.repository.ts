@@ -26,4 +26,54 @@ export class PrismaRestaurantRepository implements RestaurantRepository {
       },
     });
   }
+
+  async search(query: string): Promise<Restaurant[] | null> {
+    return await this.prismaService.restaurant.findMany({
+      where: {
+        OR: [
+          {
+            name: {
+              contains: query,
+            },
+          },
+          {
+            products: {
+              some: {
+                OR: [
+                  {
+                    name: {
+                      contains: query,
+                    },
+                  },
+                  {
+                    description: {
+                      contains: query,
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
+      include: {
+        products: {
+          where: {
+            OR: [
+              {
+                name: {
+                  contains: query,
+                },
+              },
+              {
+                description: {
+                  contains: query,
+                },
+              },
+            ],
+          },
+        },
+      },
+    });
+  }
 }

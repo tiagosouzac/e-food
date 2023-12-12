@@ -8,7 +8,7 @@ describe('(V1) Restaurants', () => {
   let app: INestApplication;
   let prismaService: PrismaService;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
@@ -17,18 +17,25 @@ describe('(V1) Restaurants', () => {
     app.useGlobalPipes(new ValidationPipe());
     await app.init();
 
-    prismaService = moduleFixture.get(PrismaService);
-  });
-
-  afterEach(async () => {
-    await prismaService.cleanDatabase();
+    prismaService = await moduleFixture.resolve(PrismaService);
   });
 
   afterAll(async () => {
+    await prismaService.cleanDatabase();
+    await prismaService.$disconnect();
     await app.close();
   });
 
   describe('/restaurants (GET)', () => {
+    it('should return an empty array if no restaurants are found', async () => {
+      await request(app.getHttpServer())
+        .get('/restaurants')
+        .expect(200)
+        .expect(({ body }) => {
+          expect(body).toEqual([]);
+        });
+    });
+
     it('should return a list of restaurants', async () => {
       await prismaService.restaurant.createMany({
         data: [
@@ -63,29 +70,12 @@ describe('(V1) Restaurants', () => {
           );
         });
     });
-
-    it('should return an empty array if no restaurants exist', async () => {
-      await request(app.getHttpServer())
-        .get('/restaurants')
-        .expect(200)
-        .expect(({ body }) => {
-          expect(body).toEqual([]);
-        });
-    });
   });
 
   describe('/restaurants/:slug (GET)', () => {
     it('should return the details of a restaurant', async () => {
-      const restaurant = await prismaService.restaurant.create({
-        data: {
-          name: 'Restaurant 1',
-          slug: 'restaurant-1',
-          opening_hours: '',
-        },
-      });
-
       await request(app.getHttpServer())
-        .get(`/restaurants/${restaurant.slug}`)
+        .get(`/restaurants/restaurant-1`)
         .expect(200)
         .expect(({ body }) => {
           expect(body).toEqual(

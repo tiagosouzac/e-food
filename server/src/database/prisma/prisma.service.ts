@@ -32,6 +32,8 @@ export class PrismaService
       name.match(/^[a-z]+$/),
     );
 
-    return Promise.all(models.map((modelKey) => this[modelKey].deleteMany()));
+    return await Promise.all(
+      models.map((modelKey) => this[modelKey].deleteMany()),
+    );
   }
 }

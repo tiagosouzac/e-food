@@ -5,4 +5,5 @@ import { Restaurant } from '../../entities/restaurant.entity';
 export abstract class RestaurantRepository {
   abstract list(): Promise<Restaurant[]>;
   abstract findBySlug(slug: string): Promise<Restaurant | null>;
+  abstract search(id: string): Promise<Restaurant[] | null>;
 }
