@@ -2,9 +2,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from '../../src/app.module';
-import { ConfigModule } from '@nestjs/config';
-import { validateEnvVars } from '../../src/env';
-import { PrismaModule } from '../../src/database/prisma/prisma.module';
 import { PrismaService } from '../../src/database/prisma/prisma.service';
 
 describe('(V1) Auth', () => {
@@ -13,15 +10,7 @@ describe('(V1) Auth', () => {
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [
-        AppModule,
-        ConfigModule.forRoot({
-          isGlobal: true,
-          envFilePath: '.env.test',
-          validate: validateEnvVars,
-        }),
-        PrismaModule,
-      ],
+      imports: [AppModule],
     }).compile();
 
     app = moduleFixture.createNestApplication();
