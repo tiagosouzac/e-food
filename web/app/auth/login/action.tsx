@@ -2,33 +2,25 @@
 
 import { redirect } from "next/navigation"
 import { cookies } from "next/headers"
+import { Auth as AuthApi } from "@/core/api/auth"
+
+const api = new AuthApi()
 
 export async function login(formData: FormData) {
   const email = formData.get("email").toString()
   const password = formData.get("password").toString()
 
   try {
-    const response = await fetch("http://localhost:3000/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    })
+    const accessToken = await api.login(email, password)
 
-    if (!response.ok) {
-      throw new Error("Usuário ou senha inválidos")
+    if (!accessToken) {
+      throw new Error("E-mail ou senha inválidos")
     }
 
-    const data = await response.json()
-    const token = data.access_token
-    cookies().set("access_token", token)
+    cookies().set("access_token", accessToken)
   } catch (error) {
     console.error(error)
-
-    return {
-      error: error.message,
-    }
+    // TODO: handle error
   }
 
   if (cookies().get("access_token")) {

@@ -3,8 +3,11 @@ import { login } from "./action"
 export default function Page() {
   return (
     <>
-      <strong className="text-3xl font-bold">Bem vindo de volta!</strong>
-      <p>Faça seu login para acessar a plataforma</p>
+      <strong className="text-3xl text-center font-bold">
+        Bem vindo de volta!
+      </strong>
+
+      <p className="text-center">Faça seu login para acessar a plataforma</p>
 
       <form className="mt-8 grid gap-3" action={login}>
         <input
