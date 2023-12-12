@@ -9,7 +9,7 @@ export interface IUser {
 }
 
 export class User implements IUser {
-  id: string;
+  id?: string;
   name: string;
   email: string;
   password: string;
