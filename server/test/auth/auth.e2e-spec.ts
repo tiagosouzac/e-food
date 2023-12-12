@@ -1,14 +1,23 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { AppModule } from './../../src/app.module';
+import { AppModule } from '../../src/app.module';
+import { ConfigModule } from '@nestjs/config';
+import { validateEnvVars } from '../../src/env';
 
 describe('(V1) Auth', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
+      imports: [
+        AppModule,
+        ConfigModule.forRoot({
+          isGlobal: true,
+          envFilePath: '.env.test',
+          validate: validateEnvVars,
+        }),
+      ],
     }).compile();
 
     app = moduleFixture.createNestApplication();
