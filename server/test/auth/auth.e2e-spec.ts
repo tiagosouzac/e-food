@@ -4,9 +4,12 @@ import * as request from 'supertest';
 import { AppModule } from '../../src/app.module';
 import { ConfigModule } from '@nestjs/config';
 import { validateEnvVars } from '../../src/env';
+import { PrismaModule } from '../../src/database/prisma/prisma.module';
+import { PrismaService } from '../../src/database/prisma/prisma.service';
 
 describe('(V1) Auth', () => {
   let app: INestApplication;
+  let prismaService: PrismaService;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -17,11 +20,15 @@ describe('(V1) Auth', () => {
           envFilePath: '.env.test',
           validate: validateEnvVars,
         }),
+        PrismaModule,
       ],
     }).compile();
 
     app = moduleFixture.createNestApplication();
     await app.init();
+
+    prismaService = moduleFixture.get(PrismaService);
+    await prismaService.cleanDatabase();
   });
 
   describe('/login (POST)', () => {

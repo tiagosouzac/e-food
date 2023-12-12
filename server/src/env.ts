@@ -1,6 +1,8 @@
 import { z } from 'zod';
 
-const schema = z.object({});
+const schema = z.object({
+  DATABASE_URL: z.string(),
+});
 
 export const validateEnvVars = (config: Record<string, string>) => {
   const result = schema.safeParse(config);
