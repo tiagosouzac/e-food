@@ -9,7 +9,7 @@ export class SearchService {
     const result = await this.restaurantRepository.search(query);
 
     if (!result?.length) {
-      return new NotFoundException(['No results found']);
+      throw new NotFoundException(['No results found']);
     }
 
     return result;

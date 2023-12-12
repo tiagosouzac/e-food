@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { RestaurantRepository } from '../database/repositories/restaurant/restaurant.repository';
 
 @Injectable()
@@ -10,6 +10,12 @@ export class RestaurantService {
   }
 
   async findBySlug(slug: string) {
-    return this.restaurantRepository.findBySlug(slug);
+    const restaurant = await this.restaurantRepository.findBySlug(slug);
+
+    if (!restaurant) {
+      throw new NotFoundException(['Restaurant not found']);
+    }
+
+    return restaurant;
   }
 }
