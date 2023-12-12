@@ -18,7 +18,14 @@ describe('(V1) Auth', () => {
     await app.init();
 
     prismaService = moduleFixture.get(PrismaService);
+  });
+
+  afterEach(async () => {
     await prismaService.cleanDatabase();
+  });
+
+  afterAll(async () => {
+    await app.close();
   });
 
   describe('/login (POST)', () => {
