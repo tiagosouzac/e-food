@@ -1,8 +1,10 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, UseGuards } from '@nestjs/common';
 import { RestaurantService } from './restaurant.service';
 import { FindBySlugDto } from './dtos/find-by-slug.dto';
+import { AuthGuard } from '../auth/auth.guard';
 
 @Controller('restaurants')
+@UseGuards(AuthGuard)
 export class RestaurantController {
   constructor(private readonly restaurantService: RestaurantService) {}
 
