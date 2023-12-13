@@ -19,9 +19,21 @@ export class PrismaRestaurantRepository implements RestaurantRepository {
       include: {
         address: true,
         categories: true,
-        images: true,
+        images: {
+          include: {
+            urls: true,
+          },
+        },
         phone: true,
-        products: true,
+        products: {
+          include: {
+            images: {
+              include: {
+                urls: true,
+              },
+            },
+          },
+        },
         social: true,
       },
     });

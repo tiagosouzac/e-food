@@ -18,10 +18,16 @@ export class ApiHelpers {
     return restaurants
   }
 
-  async findRestaurant(slug: string) {
+  async findRestaurantBySlug() {
+    const slug = new URL(this.url).pathname.replace("/restaurant/", "")
     const api = new Restaurants()
-    const restaurant = await api.find(slug, this.access_token)
-    return restaurant
+
+    try {
+      const restaurant = await api.find(slug, this.access_token)
+      return restaurant
+    } catch (error) {
+      return null
+    }
   }
 
   async searchByQuery() {

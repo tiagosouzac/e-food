@@ -19,13 +19,15 @@ export class AuthHelpers {
   }
 
   getAccessToken() {
-    return cookies().get("access_token").value
+    return cookies().get("access_token")?.value
   }
 
   /**
    * @description The access token is already prefixed with "Bearer"
    */
   setAccessToken(access_token: string) {
-    cookies().set("access_token", `Bearer ${access_token}`)
+    cookies().set("access_token", `Bearer ${access_token}`, {
+      expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+    })
   }
 }
