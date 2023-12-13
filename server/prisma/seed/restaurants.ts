@@ -215,9 +215,6 @@ export async function seedRestaurantsTable(prisma: PrismaClient) {
         createMany: {
           data: [
             {
-              name: 'Tradicional',
-            },
-            {
               name: 'Asiática',
             },
           ],

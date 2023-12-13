@@ -6,6 +6,7 @@ export interface Restaurant {
   opening_hours: string
   categories: Category[]
   images: Image[]
+  products: Product[]
 }
 
 export interface Category {
@@ -22,4 +23,12 @@ export interface ImageVariation {
   id: string
   url: string
   media_width?: number
+}
+
+export interface Product {
+  id: string
+  name: string
+  description: string
+  price: number
+  images: Image[]
 }

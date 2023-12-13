@@ -57,6 +57,11 @@ export class PrismaRestaurantRepository implements RestaurantRepository {
         ],
       },
       include: {
+        images: {
+          include: {
+            urls: true,
+          },
+        },
         products: {
           where: {
             OR: [
@@ -71,6 +76,13 @@ export class PrismaRestaurantRepository implements RestaurantRepository {
                 },
               },
             ],
+          },
+          include: {
+            images: {
+              include: {
+                urls: true,
+              },
+            },
           },
         },
       },

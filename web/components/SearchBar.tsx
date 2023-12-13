@@ -2,10 +2,10 @@ import { Icon } from "@/components/Icon"
 
 export function SearchBar() {
   return (
-    <form action="/search" className="navbar-end w-full flex gap-1 lg:max-w-sm">
+    <form className="navbar-end w-full flex gap-1 lg:max-w-sm" action="/search">
       <input
         className="w-full input input-bordered overflow-hidden text-ellipsis whitespace-nowrap"
-        name="search"
+        name="query"
         type="text"
         placeholder="Restaurante, prato, bebida, sobremesa..."
       />
