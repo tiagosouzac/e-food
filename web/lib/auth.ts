@@ -26,8 +26,9 @@ export class AuthHelpers {
    * @description The access token is already prefixed with "Bearer"
    */
   setAccessToken(access_token: string) {
-    cookies().set("access_token", `Bearer ${access_token}`, {
-      expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
-    })
+    if (!access_token) return
+
+    const expires = new Date(Date.now() + 24 * 60 * 60 * 1000)
+    cookies().set("access_token", `Bearer ${access_token}`, { expires })
   }
 }

@@ -8,8 +8,6 @@ export default async function Page() {
   const helpers = new ApiHelpers()
   const restaurant = await helpers.findRestaurantBySlug()
 
-  console.log(restaurant)
-
   if (!restaurant) {
     return (
       <strong className="pt-32 text-primary-content text-3xl text-center font-bold col-span-full block">

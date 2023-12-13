@@ -5,6 +5,7 @@ import { redirect } from "next/navigation"
 export default function Layout({ children }: { children: React.ReactNode }) {
   const helpers = new AuthHelpers()
   const access_token = helpers.getAccessToken()
+
   if (access_token) redirect("/")
 
   return (

@@ -1,4 +1,3 @@
-import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { Header } from "@/components/Header"
 import { AuthHelpers } from "@/lib/auth"

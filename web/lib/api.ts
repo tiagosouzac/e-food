@@ -14,8 +14,13 @@ export class ApiHelpers {
 
   async restaurantsList() {
     const api = new Restaurants()
-    const restaurants = await api.list(this.access_token)
-    return restaurants
+
+    try {
+      const restaurants = await api.list(this.access_token)
+      return restaurants
+    } catch (error) {
+      return null
+    }
   }
 
   async findRestaurantBySlug() {
@@ -38,7 +43,7 @@ export class ApiHelpers {
       const result = await api.search(query, this.access_token)
       return result
     } catch (error) {
-      return []
+      return null
     }
   }
 }
