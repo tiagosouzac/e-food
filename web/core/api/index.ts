@@ -19,14 +19,14 @@ export class Api {
     }
   }
 
-  async _get(path: string, options?: RequestInit) {
+  protected async get(path: string, options?: RequestInit) {
     return this.fetch(path, {
       ...options,
       method: "GET",
     })
   }
 
-  async _post(path: string, options?: RequestInit) {
+  protected async post(path: string, options?: RequestInit) {
     return this.fetch(path, {
       ...options,
       method: "POST",

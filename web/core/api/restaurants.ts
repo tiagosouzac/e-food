@@ -3,7 +3,7 @@ import { Restaurant } from "@/core/types/restaurant"
 
 export class Restaurants extends Api {
   async list(access_token: string): Promise<[]> {
-    return this._get("/restaurants", {
+    return this.get("/restaurants", {
       headers: {
         Authorization: access_token,
       },
@@ -11,7 +11,7 @@ export class Restaurants extends Api {
   }
 
   async find(slug: string, access_token: string): Promise<Restaurant> {
-    return this._get(`/restaurants/${slug}`, {
+    return this.get(`/restaurants/${slug}`, {
       headers: {
         Authorization: access_token,
       },

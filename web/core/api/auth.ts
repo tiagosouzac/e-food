@@ -6,7 +6,7 @@ interface AuthResponse {
 
 export class Auth extends Api {
   async login(email: string, password: string): Promise<AuthResponse> {
-    return this._post("/auth/login", {
+    return this.post("/auth/login", {
       body: JSON.stringify({
         email,
         password,
@@ -20,7 +20,7 @@ export class Auth extends Api {
     password: string,
     passwordConfirmation: string
   ): Promise<AuthResponse> {
-    return this._post("/auth/register", {
+    return this.post("/auth/register", {
       body: JSON.stringify({
         name,
         email,
