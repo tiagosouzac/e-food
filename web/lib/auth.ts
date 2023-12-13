@@ -19,7 +19,7 @@ export class AuthHelpers {
   }
 
   getAccessToken() {
-    return cookies().get("access_token")
+    return cookies().get("access_token").value
   }
 
   /**

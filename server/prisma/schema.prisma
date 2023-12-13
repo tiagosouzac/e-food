@@ -19,7 +19,7 @@ model Restaurant {
   id            String     @id @default(uuid())
   name          String     @unique
   slug          String     @unique
-  description   String?
+  description   String?    @db.Text
   categories    Category[]
   phone         Phone[]
   social        Social[]
@@ -80,7 +80,7 @@ model Product {
   id           String  @id @default(uuid())
   name         String
   slug         String  @unique
-  description  String
+  description  String  @db.Text
   price        Int
   restaurantId String?
 

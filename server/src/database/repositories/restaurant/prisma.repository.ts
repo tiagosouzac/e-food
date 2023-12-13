@@ -9,7 +9,7 @@ export class PrismaRestaurantRepository implements RestaurantRepository {
 
   async list(): Promise<Restaurant[]> {
     return await this.prismaService.restaurant.findMany({
-      include: { categories: true, images: true },
+      include: { categories: true, images: { include: { urls: true } } },
     });
   }
 

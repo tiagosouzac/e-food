@@ -6,7 +6,12 @@ module.exports = {
       center: true,
       padding: "0.75rem",
     },
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        "card-list": "repeat(auto-fill, minmax(240px, 1fr))",
+        "restaurant-details": "1.5fr 1fr",
+      },
+    },
   },
   plugins: [require("daisyui")],
 
